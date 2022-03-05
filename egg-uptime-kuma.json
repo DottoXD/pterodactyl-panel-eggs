@@ -1,0 +1,31 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v1",
+        "update_url": null
+    },
+    "exported_at": "2022-03-05T17:05:34+01:00",
+    "name": "Uptime Kuma",
+    "author": "dotto@orangybot.me",
+    "description": "Uptime Kuma Pterodactyl Panel egg.",
+    "features": null,
+    "images": [
+        "ghcr.io\/software-noob\/pterodactyl-images:nodejs_16"
+    ],
+    "file_denylist": [],
+    "startup": "node server\/server.js --port={{SERVER_PORT}}",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#Install dependencies\r\necho \"Installing git, gcc, g++, nodejs and npm!\"\r\napk add --no-cache git gcc g++ nodejs npm\r\n\r\n#Server directory\r\necho \"Entering the server's directory!\"\r\ncd \/mnt\/server\r\n\r\n#Makes sure that the server has no files, so the server won't get stuck at installing in case it's a reinstall\r\necho \"Making sure that there is no existing Uptime Kuma trace.\"\r\nif [ ! -d \/src ]; then\r\n    #Clones Uptime Kuma\r\n    echo \"Cloning Uptime Kuma!\"\r\n    git clone https:\/\/github.com\/louislam\/uptime-kuma .\r\nfi\r\n\r\n#Installs Uptime Kuma and runs the setup command\r\necho \"Installing the dependencies and running the setup command!\"\r\nnpm install\r\nnpm run setup\r\n\r\necho \"Finished installing Uptime Kuma!\"",
+            "container": "alpine:3.15.0",
+            "entrypoint": "ash"
+        }
+    },
+    "variables": []
+}
